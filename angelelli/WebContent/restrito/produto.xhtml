@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view contentType="text/html" />
+<h:head>
+	<link href="../resources/css/tabelas.css" rel="stylesheet" type="text/css" />
+</h:head>
+<ui:composition template="../templates/template.xhtml">
+	<ui:define name="dados">
+		<h:form id="frmProduto">
+
+			<p:growl id="growl" showDetail="true" live="2000" />
+			<p:focus />
+			<div id="font_um">
+				<p:panel id="panelProduto">
+					<p:panelGrid style="width:930px;">
+						<f:facet name="header">
+							<p:row>
+								<p:column colspan="8">Produtos</p:column>
+							</p:row>
+						</f:facet>
+						<p:row>
+							<p:column>
+								<h:outputText value="CODIGO" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.codigoAuxiliar}"
+									style="width:60px;" />
+								<h:inputHidden value="#{produtoBean.produto.id}" />
+							</p:column>
+							<p:column>
+								<h:outputText value="NOME" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.nome}"
+									style="width:400px;" />
+							</p:column>
+							<p:column>
+								<h:outputText value="SEXO" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu value="#{produtoBean.produto.sexo}">
+									<f:selectItem itemLabel="Selecione Sexo" itemValue="" />
+									<f:selectItem itemLabel="Macho" itemValue="Macho" />
+									<f:selectItem itemLabel="Fêmea" itemValue="Fêmea" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					<p:panelGrid columns="4" style="width:930px;">
+						<f:facet name="header">  
+     					   		INFORMAÇÕES GERAIS 
+ 						   </f:facet>
+						<h:outputText value="CLASSIFICAÇÃO" />
+						<p:selectOneMenu id="classificacao"
+							value="#{produtoBean.produto.classificacao}" style="width:300px;"
+							converter="entityConverter" required="true"
+							requiredMessage="Erro ao Salvar - Campo Obrigatório"
+							label="Classificação">
+							<f:selectItem itemLabel="Selecione..." itemValue="" />
+							<f:selectItems value="#{produtoBean.classificacoes}" var="p"
+								itemLabel="#{p.descricao}" itemValue="#{p}" />
+						</p:selectOneMenu>
+						<h:outputText value="OBSERVAÇÃO" />
+						<p:selectOneMenu id="observacao"
+							value="#{produtoBean.produto.observacao}" style="width:300px;"
+							converter="entityConverter" label="Observação">
+							<f:selectItem itemLabel="Selecione..." itemValue="" />
+							<f:selectItems value="#{produtoBean.observacoes}" var="o"
+								itemLabel="#{o.descricao}" />
+						</p:selectOneMenu>
+						<h:outputText value="EMBALAGEM" />
+
+						<p:selectOneMenu id="embalagem"
+							value="#{produtoBean.produto.embalagem}" style="width:300px;"
+							converter="entityConverter">
+							<f:selectItem itemLabel="Selecione..." itemValue="" />
+							<f:selectItems value="#{produtoBean.embalagens}" var="e"
+								itemLabel="#{e.descricao} - #{e.peso} - #{e.unidade}" />
+						</p:selectOneMenu>
+						<h:outputText value="RMA" />
+						<p:selectOneMenu id="rma" value="#{produtoBean.produto.rma}"
+							style="width:150px;" converter="entityConverter">
+							<f:selectItem itemLabel="Selecione..." itemValue="" />
+							<f:selectItems value="#{produtoBean.rmas}" var="r"
+								itemLabel="#{r.registro}" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+					<p:panelGrid style="text-align:center;width:930px;">
+						<f:facet name="header">
+							<p:row>
+								<p:column colspan="9">INFORMATIVO NUTRICIONAL</p:column>
+							</p:row>
+						</f:facet>
+						<p:row>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.valorCalorico}"
+									style="width:40px;" title="Valor Calórico">
+								Valor Calórico<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.proteina}"
+									style="width:40px;">Proteínas<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.gorduraTotal}"
+									style="width:40px;">Gorduras Totais<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.sodio}"
+									style="width:40px;">Sódio<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{produtoBean.produto.percentualGorduraSaturada}"
+									style="width:40px;">% Gord. Sat.<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.percentualProteina}"
+									style="width:40px;">% Proteínas<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{produtoBean.produto.percentualCarboidrato}"
+									style="width:40px;">% Carboidratos<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.percentualSodio}"
+									style="width:40px;">% Sódio<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{produtoBean.produto.percentualValorCalorico}"
+									style="width:40px;">% Valor Calórico<br />
+								</p:inputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.carboidratos}"
+									style="width:40px;">Carboidratos<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.fibra}"
+									style="width:40px;">Fibras<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.gorduraSaturada}"
+									style="width:40px;">Gord. Saturadas<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.gorduraTrans}"
+									style="width:40px;">Gord. Trans<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{produtoBean.produto.percentualGorduraTrans}"
+									style="width:40px;">% Gord. Trans<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{produtoBean.produto.percentualGorduraTotal}"
+									style="width:40px;">% Gord.Totais<br />
+								</p:inputText>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{produtoBean.produto.percentualFibras}"
+									style="width:40px;">% Fibras<br />
+								</p:inputText>
+							</p:column>
+							<p:column colspan="2">Glúten<br />
+								<p:inputText value="#{produtoBean.produto.gluten}"
+									style="width:130px;">
+								</p:inputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="Ingrediente" />
+							</p:column>
+							<p:column colspan="8">
+								<p:inputText value="#{produtoBean.produto.ingrediente}"
+									style="width:750px;" />
+							</p:column>
+						</p:row>
+						<f:facet name="footer">
+							<p:row>
+								<p:column colspan="9">
+									<p:commandButton value="Salvar" icon="ui-icon-check"
+										style="margin:0px" action="#{produtoBean.grava}"
+										update=":frmProduto :frmTable:tableProd growl" id="salvar"
+										ajax="false" />
+									<p:commandButton value="Copiar" icon="ui-icon-check"
+										style="margin:5px;" action="#{produtoBean.salvarCopia()}"
+										update=":frmProduto :frmTable:tableProd" id="copiar"
+										ajax="false" />
+								</p:column>
+							</p:row>
+						</f:facet>
+					</p:panelGrid>
+				</p:panel>
+			</div>
+		</h:form>
+		<h:form id="frmTable">
+			<div id="font_um">
+				<p:panel>
+					<p:dataTable id="tableProd" value="#{produtoBean.produtos}"
+						filteredValue="#{produtoBean.listaProdutos}" var="produto"
+						emptyMessage="Nenhum produto cadastrado" rows="10"
+						paginator="true" paginatorPosition="bottom"
+						paginatorAlwaysVisible="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="10,30,50">
+						<p:column headerText="CÓDIGO"
+							style="width:70px;text-align:center;"
+							filterBy="#{produto.codigoAuxiliar}"
+							filterStyle="max-width: 40px; min-width: 40px;">
+							<h:outputText value="#{produto.codigoAuxiliar}" />
+						</p:column>
+						<p:column headerText="NOME" filterBy="#{produto.nome}"
+							filterStyle="max-width: 300px; min-width: 300px;">
+							<h:outputText
+								value="#{produto.nome} - #{produto.classificacao.descricao}" />
+						</p:column>
+						<p:column headerText="AÇÃO" style="width:90px;">
+							<p:commandButton update=":frmProduto:panelProduto"
+								icon="ui-icon-search" title="Visualizar" ajax="false">
+								<f:setPropertyActionListener value="#{produto}"
+									target="#{produtoBean.produto}" />
+							</p:commandButton>
+							<p:commandButton update=":frmProduto:panelProduto"
+								icon="ui-icon-pencil" title="Editar">
+								<f:setPropertyActionListener value="#{produto}"
+									target="#{produtoBean.produto}" />
+							</p:commandButton>
+							<p:commandButton action="#{produtoBean.remover}"
+								icon="ui-icon-trash" id="excluir" ajax="false"
+								update=":frmTable :tableProd">
+								<!-- 	<f:ajax render="@form" />  -->
+								<f:setPropertyActionListener value="#{produto}"
+									target="#{produtoBean.produto}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

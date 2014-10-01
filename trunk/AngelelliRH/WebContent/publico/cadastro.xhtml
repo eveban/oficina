@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view contentType="text/html" />
+
+<ui:decorate template="../templates/padrao.xhtml">
+	<ui:define name="centro">
+		<h:body>
+			<h:form id="frmCadastro">
+				<h:inputHidden value="#{profissionalMB.profissional.id}" />
+				<h:inputHidden value="#{profissionalMB.profissional.ativo}" />
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:focus />
+				<div id="font_um">
+					<div align="left">
+						<p:panel>
+							<f:facet name="header">
+								<h:outputLabel value="Cadastre seu currículo" />
+							</f:facet>
+							<p:tabView id="tab1" dynamic="true" effect="slide"
+								effectDuration="normal">
+								<p:tab title="Pessoal" id="tabPessoal">
+									<p:panel>
+
+										<h:panelGrid columns="4">
+											<h:outputLabel value="Nome" for="nome" />
+											<p:inputText label="Nome" id="nome"
+												value="#{profissionalMB.profissional.nome}"
+												style="width:200px;" size="30" maxlength="30"
+												required="true" requiredMessage="Você não tem nome ?">
+												<f:validateLength minimum="10" maximum="30" />
+											</p:inputText>
+
+											<h:outputLabel value="Sexo" for="sexo"
+												style="font-size:13px;" />
+											<p:selectOneMenu value="#{profissionalMB.profissional.sexo}"
+												id="sexo" style="width:120px;">
+												<f:selectItem itemLabel="Selecione" itemValue="" />
+												<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+												<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+											</p:selectOneMenu>
+
+											<h:outputLabel value="Usuário" for="login" />
+											<p:inputText value="#{profissionalMB.profissional.login}" 
+												id="login" label="usuario" style="width:100px;" size="15" maxlength="15" validatorMessage="Login " />
+
+											<h:outputLabel value="Senha" for="senha" />
+											<p:password value="#{profissionalMB.profissional.senha}"
+												id="senha" style="width:100px;" />
+
+											<h:outputLabel value="Nascimento" for="nascimento" />
+											<p:calendar id="nascimento"
+												value="#{profissionalMB.profissional.dataNascimento.time}"
+												pattern="dd/MM/yyyy" navigator="true" display="inline"
+												timeZone="pt-br" />
+
+											<h:outputLabel value="Cargo desejado" for="cargo"
+												style="font-size:13px;" />
+											<p:selectOneMenu value="#{profissionalMB.profissional.cargo}"
+												id="cargo" style="width:120px;" converter="entityConverter"
+												label="Cargo">
+												<f:selectItem itemLabel="Selecione..." />
+												<f:selectItems value="#{cargoMB.cargos}" var="cargo"
+													itemLabel="#{cargo.descricao}" />
+											</p:selectOneMenu>
+
+											<h:outputLabel value="Cep" for="cep" />
+											<p:inputMask id="cep"
+												value="#{profissionalMB.profissional.cep}" mask="99999-999"
+												size="10" />
+
+											<h:outputLabel value="Endereço" for="endereco" />
+											<p:inputText value="#{profissionalMB.profissional.endereco}"
+												id="endereco" style="width:300px;" />
+
+											<h:outputLabel value="Bairro" for="bairro" />
+											<p:inputText value="#{profissionalMB.profissional.bairro}"
+												id="bairro" />
+
+											<h:outputLabel value="Cidade" for="cidade" />
+											<p:inputText value="#{profissionalMB.profissional.cidade}"
+												id="cidade" />
+
+											<h:outputLabel value="Estado" for="estado" />
+											<p:inputText size="10"
+												value="#{profissionalMB.profissional.estado}" id="estado" />
+
+											<h:outputLabel value="Complemento" for="complemento" />
+											<p:inputText
+												value="#{profissionalMB.profissional.complemento}"
+												id="complemento" />
+
+											<h:outputLabel value="Telefone" for="telefone" />
+											<p:inputMask mask="(99)9999-9999" id="telefone"
+												label="Telefone"
+												value="#{profissionalMB.profissional.telResidencial}" />
+
+											<h:outputLabel value="Celular" for="celular" />
+											<p:inputMask mask="(99)9999-9999" id="celular"
+												label="Celular"
+												value="#{profissionalMB.profissional.telResidencial}" />
+
+											<h:outputLabel value="Email" for="email" />
+											<p:inputText value="#{profissionalMB.profissional.email}"
+												id="email" size="25" maxlength="50"
+												validatorMessage="Email inválido" label="E-mail">
+												<f:validateRegex
+													pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+											</p:inputText>
+											<h:panelGrid columns="4" styleClass="semBorda">
+
+												<h:outputLabel value="PCD" for="pcd" />
+												<h:selectBooleanCheckbox
+													value="#{profissionalMB.profissional.deficiente}" id="pcd"
+													label="Deficiente" />
+
+												<h:outputLabel value="Qual " for="desDef" />
+											</h:panelGrid>
+											<p:inputText size="30"
+												value="#{profissionalMB.profissional.descricaoDef}"
+												id="desDef" />
+											
+											<h:outputLabel value="CNH" for="cnh" />
+											<h:panelGrid columns="3">
+												<p:inputText value="#{profissionalMB.profissional.cnh}"
+													id="cnh" label="CNH" size="10" />
+												<h:outputLabel value="Categoria" for="categoria" />
+												<p:inputText value="#{profissionalMB.profissional.tipoCNH}"
+													id="categoria" label="Categoria" size="4" />
+											</h:panelGrid>
+											<h:column>
+												<h:outputLabel value="Fumante" for="fumante" />
+												<h:selectBooleanCheckbox
+													value="#{profissionalMB.profissional.fumante}" id="fumante"
+													label="Fumante" />
+											</h:column>
+										</h:panelGrid>
+									</p:panel>
+								</p:tab>
+								<p:tab title="Profissional" id="tabProfissional">
+									<ui:include src="/publico/dialogExperiencia.xhtml" />
+								</p:tab>
+								<p:tab title="Formações">
+									<h:outputText value="teste" />
+								</p:tab>
+								<p:tab title="Curso Complementares">
+									<h:outputText value="teste" />
+								</p:tab>
+							</p:tabView>
+							<p:commandButton action="#{profissionalMB.salvar()}"
+								value="Salvar" update="frmCadastro" />
+							<h:messages />
+						</p:panel>
+					</div>
+				</div>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:decorate>
+</html>

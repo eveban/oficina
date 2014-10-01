@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:decorate template="../templates/template.xhtml">
+	<ui:define name="centro">
+		<h:form id="formCli">
+			<p:panel header="Lista dos Clientes">
+				<p:dataTable id="tbCli" var="cli"
+					value="#{clientesMB.listaClientes}" paginator="true" lazy="true"
+					rows="10" paginatorPosition="bottom" widgetVar="cliTable"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					rowsPerPageTemplate="5,10,15"
+					emptyMessage="Nenhum Cliente cadastrado!">
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Pesquisar:  " style="text-align: right" />
+							<p:inputText id="globalFilter" onkeyup="cliTable.filter()"
+								update="cliTable" style="width:150px" />
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="ID.">
+						<div align="left"
+							style="width: 100%; min-width: 100%; max-width: 100%;">
+							<h:outputText value="#{cli.id}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="Razão Social / Nome">
+						<div align="left"
+							style="width: 100%; min-width: 100%; max-width: 100%;">
+							<h:outputText value="#{cli.nome}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="Fantasia / Apelido">
+						<div align="left"
+							style="width: 100%; min-width: 100%; max-width: 100%;">
+							<h:outputText value="#{cli.nome}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="CNPJ/CPF">
+						<div align="left"
+							style="width: 100%; min-width: 100%; max-width: 100%;">
+							<h:outputText value="#{cli.cpf_cnpj}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="Ações">
+						<div align="center">
+							<p:commandButton id="cmdEditar"
+								action="#{clientesMB.editar(cli)}" ajax="true"
+								icon="ui-icon-pencil">
+							</p:commandButton>
+							<p:tooltip for="cmdEditar" value="Alterar os dados do Cliente"
+								showEffect="slide" hideEffect="slide" />
+
+							<p:commandButton id="cmdExcluir"
+								oncomplete="confirmation.show();" ajax="true"
+								icon="ui-icon-circle-minus" process="@this">
+								<f:setPropertyActionListener value="#{fun}"
+									target="#{clientesMB.clienteSelected}" />
+							</p:commandButton>
+
+							<p:tooltip for="cmdExcluir"
+								value="Excluir os dados do Cliente..." showEffect="slide"
+								hideEffect="slide" />
+						</div>
+					</p:column>
+
+					<f:facet name="footer">
+						<h:panelGrid columns="3" styleClass="semBorda">
+							<p:commandButton action="#{clientesMB.novocliente()}"
+								ajax="false" value="Novo Registro" icon="ui-icon-circle-plus" />
+
+							<p:commandButton action="#{clientesMB.novocliente()}"
+								onclick="this.form.target='_blank'" ajax="false"
+								value="Imprimir" icon="ui-icon-print" />
+
+							<p:commandButton action="main.jsf" ajax="false" value="Fechar"
+								icon="ui-icon-circle-close" />
+
+						</h:panelGrid>
+					</f:facet>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+
+		<p:confirmDialog message="Confirma a exclusão deste registro"
+			showEffect="bounce" hideEffect="explode" header="Excluir"
+			appendTo="@(body)" severity="alert" widgetVar="confirmation">
+
+			<p:commandButton value="Sim" oncomplete="confirmation.hide();"
+				action="#{clientesMB.excluir(fun)}" ajax="true" process="@this"
+				update=":formCli:tbCli" />
+
+			<p:commandButton value="Não" onclick="confirmation.hide()"
+				type="button" />
+		</p:confirmDialog>
+
+	</ui:define>
+</ui:decorate>
+</html>

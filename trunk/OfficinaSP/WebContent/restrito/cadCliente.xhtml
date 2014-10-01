@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<script type="text/javascript"
+		src="http://maps.google.com/maps/api/js?sensor=true">
+	</script>
+
+	<h:outputScript library="js" name="phoneMaskHandler.js" />
+</h:head>
+<h:form id="frmCliente">
+	<p:panel>
+		<p:panelGrid styleClass="semBorda" columns="4"
+			style="text-align:center;">
+					Tipo de Pessoa
+				<p:selectOneRadio id="txtTipo"
+				value="#{clienteMB.cliente.tp_pessoa}" style="text-align:center;">
+				<f:selectItem itemLabel="Física" itemValue="0" />
+				<f:selectItem itemLabel="Jurídica" itemValue="1" />
+				<p:ajax update="txtCPF" />
+			</p:selectOneRadio>
+
+			<h:outputText value="Ativo" style="text-align:a;" />
+
+			<p:selectBooleanCheckbox id="txtAtivo" label="Ativo"
+				value="#{clienteMB.cliente.status_cliente}" />
+		</p:panelGrid>
+
+		<p:panelGrid style="text-align:center;">
+			<p:row>
+				<p:column colspan="2">
+					<h:outputLabel value="CPF/CNPJ" />
+					<br />
+					<p:inputMask
+						mask="#{clienteMB.cliente.tp_pessoa == 1 ? '99.999.999/9999-99' : '999.999.999-99'}"
+						id="txtCPF" value="#{clienteMB.cliente.cpf_cnpj}" size="25" />
+				</p:column>
+				<p:column colspan="2">
+					<h:outputLabel value="Razão Social" />
+					<br />
+					<p:inputText id="txtNome" value="#{clienteMB.cliente.nome}"
+						required="true" maxlength="90" size="60" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column colspan="2">
+					<h:outputLabel value="Apelido / Nome Fantasia" />
+					<br />
+					<p:inputText id="txtFantasia" maxlength="60"
+						value="#{clienteMB.cliente.nome_fantasia}" size="60" />
+				</p:column>
+				<p:column colspan="1">
+					<h:outputLabel value="RG" />
+					<br />
+					<p:inputText id="txtRG" maxlength="60"
+						value="#{clienteMB.cliente.rg}" />
+				</p:column>
+				<p:column colspan="1">
+					<h:outputLabel value="Inscrição Estadual" />
+					<br />
+					<p:inputText id="txtIE" maxlength="60"
+						value="#{clienteMB.cliente.inscricaoEstadual}" />
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</p:panel>
+</h:form>
+</html>

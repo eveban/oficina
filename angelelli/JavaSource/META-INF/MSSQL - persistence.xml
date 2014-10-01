@@ -1,0 +1,32 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="angelelli" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.com.angelelli.modelo.Classificacao</class>
+		<class>br.com.angelelli.modelo.Temperatura</class>
+		<class>br.com.angelelli.modelo.RMA</class>
+		<class>br.com.angelelli.modelo.Observacao</class>
+		<class>br.com.angelelli.modelo.Embalagem</class>
+		<class>br.com.angelelli.modelo.Produto</class>
+		<class>br.com.angelelli.modelo.Usuario</class>
+		<properties>
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+			<property name="javax.persistence.jdbc.driver" value="net.sourceforge.jtds.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:jtds:SQLServer://192.168.1.8:1433/etiquetas" />
+			<property name="javax.persistence.jdbc.user" value="sysdba" />
+			<property name="javax.persistence.jdbc.password" value="masterkey" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_size" value="20" />
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<property name="hibernate.c3p0.idle_test_period" value="3000" />
+		</properties>
+	</persistence-unit>
+</persistence> 

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+		<h:form prependId="false">
+			<p:panel header="Seja bem-vindo - Dados do usuário">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Login: " />
+					<h:outputText value="#{contextoBean.usuarioLogado.nome}" />
+					<h:outputLabel value="Empresa: " />
+					<h:outputText value="#{contextoBean.usuarioLogado.empresa.id}" />
+				</h:panelGrid>
+
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:decorate>
+</html>

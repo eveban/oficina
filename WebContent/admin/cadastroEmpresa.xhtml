@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+<f:view contentType="text/html" />
+<f:view contentType="text/html" />
+<ui:decorate template="../templates/interna.xhtml">
+	<ui:define name="corpo">
+		<h:body>
+			<h:form id="frmEmpresa">
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:focus />
+				<div id="font_um">
+					<div align="left">
+						<p:panel>
+							<f:facet name="header">
+								<h:outputLabel value="Cadastre de Empresas" />
+							</f:facet>
+							<p:tabView id="tab1" dynamic="false" effect="slide"
+								effectDuration="normal">
+								<p:tab title="Empresa" id="tabEmpresa">
+									<p:panel>
+										<p:panelGrid style="text-align:center;" styleClass="semBorda">
+											<p:row>
+												<p:column>
+													<h:outputLabel value="Tipo: " for="txtTipo" />
+													<br />
+													<p:selectOneRadio id="txtTipo"
+														value="#{empresaMB.empresa.tipoEmpresa}"
+														style="width:130px;" required="true">
+														<f:selectItem itemLabel="Física" itemValue="#{0}" />
+														<f:selectItem itemLabel="Jurídica" itemValue="#{1}" />
+
+													</p:selectOneRadio>
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Razão Social" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.razaoSocial}"
+														size="90" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+										<p:panelGrid style="text-align:center;" styleClass="semBorda">
+											<p:row>
+												<p:column>
+													<h:outputLabel value="CNPJ" />
+													<br />
+													<p:inputMask mask="99.999.999/9999-99"
+														value="#{empresaMB.empresa.cnpj}" size="25" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Nome Fantasia" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.nomeFantasia}"
+														size="70" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Inscrição Estadual" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.inscricaoEstadual}"
+														size="25" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+										<p:panelGrid style="text-align:center;" styleClass="semBorda">
+											<p:row>
+												<p:column>
+													<h:outputLabel value="Responsável" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.nomeResponsavel}"
+														size="25" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="CPF" />
+													<br />
+													<p:inputMask mask="999.999.999-99"
+														value="#{empresaMB.empresa.nomeResponsavel}" size="20" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="E-mail" />
+													<br />
+													<p:inputText required="false" size="45"
+														requiredMessage="E-mail inválido"
+														value="#{empresaMB.empresa.email}">
+														<f:validateRegex
+															pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+													</p:inputText>
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Celular" />
+													<br />
+													<p:inputMask mask="(99) 99999-9999 "
+														value="#{empresaMB.empresa.nomeResponsavel}" size="20" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+										<p:panelGrid style="text-align:center;" styleClass="semBorda">
+											<p:row>
+												<p:column>
+													<h:outputLabel value="CEP" />
+													<br />
+													<p:inputMask mask="99999-999"
+														value="#{empresaMB.empresa.cep}" size="10" />
+													<p:commandButton icon="ui-icon-search" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Logradouro" for="txtLogradouro" />
+													<br />
+													<p:selectOneMenu id="txtLogradouro" style="width:150px;"
+														value="#{empresaMB.empresa.logradouro}">
+														<f:selectItem itemLabel="Selecione..." itemValue="" />
+													</p:selectOneMenu>
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Endereço" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.endereco}"
+														size="60" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Número" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.numero}" size="10" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+										<p:panelGrid style="text-align:center;" styleClass="semBorda">
+											<p:row>
+												<p:column>
+													<h:outputLabel value="Bairro" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.bairro}" size="30" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="UF" />
+													<br />
+													<p:selectOneMenu id="estado" value="#{cidadesMB.estado.id}">
+														<f:selectItem itemValue="" itemLabel="Selecione..." />
+														<f:selectItems value="#{estadoMB.estados}" var="estado"
+															itemLabel="#{estado.nome}" itemValue="#{estado.id}" />
+														<p:ajax listener="#{cidadesMB.actionCarregaListaCidades}"
+															update="estado,cidade" />
+													</p:selectOneMenu>
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Cidade" />
+													<br />
+													<p:selectOneMenu id="cidade" style="width:200px;"
+														value="#{empresaMB.empresa.cidade}"
+														converter="conversorCidade">
+														<f:selectItem itemLabel="Selecione..." itemValue="#{null}" />
+														<f:selectItems value="#{cidadesMB.listCidades}"
+															var="cidade" itemLabel="#{cidade.nome}"
+															itemValue="#{cidade}" />
+													</p:selectOneMenu>
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Complemento" for="txtComplemento" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.complemento}"
+														size="40" id="txtComplemento" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+
+										<p:panelGrid style="text-align:center;" styleClass="semBorda">
+											<p:row>
+												<p:column>
+													<h:outputLabel value="Telefone (1)" />
+													<br />
+													<p:inputMask mask="(99)9999-9999"
+														value="#{empresaMB.empresa.telefone1}" size="15" />
+												</p:column>
+												<p:column>
+													<p:column>
+														<h:outputLabel value="Telefone(2)" />
+														<br />
+														<p:inputMask mask="(99)9999-9999"
+															value="#{empresaMB.empresa.telefone2}" size="15" />
+													</p:column>
+												</p:column>
+												<p:column>
+													<h:outputLabel value="Site" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.site}" size="35" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="CRT" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.crt}" size="20" />
+												</p:column>
+												<p:column>
+													<h:outputLabel value="CNAE" />
+													<br />
+													<p:inputText value="#{empresaMB.empresa.cnae}" size="20" />
+												</p:column>
+											</p:row>
+
+										</p:panelGrid>
+
+									</p:panel>
+								</p:tab>
+								<p:tab title="Usuários" id="tabUsuario">
+									<ui:include src="dialogUsuario.xhtml" />
+								</p:tab>
+							</p:tabView>
+							<p:commandButton update="frmEmpresa"
+								action="#{empresaMB.salvar()}" value="Salvar" />
+							<h:messages />
+						</p:panel>
+					</div>
+				</div>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:decorate>
+</html>

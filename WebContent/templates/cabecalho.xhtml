@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form prependId="false">
+	<h:panelGrid columns="3" style="width: 100%">
+		<h:column>
+			<div align="left">
+				<p:graphicImage value="#{resource['images/logo.png']}"
+					style="margin:5px 0 11px 10px; width:120px; height: 25px;" />
+			</div>
+		</h:column>
+
+		<h:column>
+
+		</h:column>
+
+		<h:column>
+			<div style="width: 100%; text-align: right;">
+				<h:commandLink action="#{usuariosMB.logoff()}" value="">
+					<p:graphicImage id="imgSair"
+						value="#{resource['images/logout.png']}" />
+				</h:commandLink>
+				<p:tooltip for="imgSair" value="Sair do Sistema - Logoff"
+					showEffect="slide" hideEffect="slide" />
+			</div>
+		</h:column>
+	</h:panelGrid>
+</h:form>
+</html>

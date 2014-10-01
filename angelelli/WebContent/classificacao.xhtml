@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view contentType="text/html" />
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="dados">
+		<body>
+			<h:form id="frmClassifica">
+				<p:dataTable id="tableClassifica"
+					value="#{classificacaoBean.classificacoes}" var="classifica"
+					emptyMessage="Sem classificação" rows="10"
+					paginator="true" paginatorPosition="bottom"
+					paginatorAlwaysVisible="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,30,50">
+
+					<p:column headerText="Código" style="text-align:center;width:5px;">
+						<h:outputText value="#{classifica.id}" />
+					</p:column>
+					<p:column headerText="Descrição" style="width:300px;">
+						<h:outputText value="#{classifica.descricao}" />
+					</p:column>
+					<p:column headerText="Validade" style="text-align:center;width:30px;">
+						<h:outputText value="#{classifica.validade}" />
+					</p:column>
+					<p:column headerText="Temperatura" style="width:200px;">
+						<h:outputText value="#{classifica.temperatura.descricao}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+
+		</body>
+	</ui:define>
+</ui:composition>
+</html>

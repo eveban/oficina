@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<script type="text/javascript"
+		src="http://maps.google.com/maps/api/js?sensor=true">
+	</script>
+	<h:outputScript library="js" name="phoneMaskHandler.js" />
+</h:head>
+<ui:decorate template="../templates/template.xhtml">
+	<ui:define name="centro">
+		<h:form id="frmFornecedor">
+			<p:panel id="pnlDados" header="Cadastro de Fornecedores">
+				<p:focus />
+				<h:inputHidden value="#{fornecedorBean.fornecedor.id}" />
+				<h:panelGrid columns="4">
+					<h:outputLabel value="Tipo de Pessoa" />
+					<p:selectOneRadio id="txtTipo"
+						value="#{fornecedorBean.fornecedor.tp_pessoa}">
+						<f:selectItem itemLabel="Física" itemValue="0" />
+						<f:selectItem itemLabel="Jurídica" itemValue="1" />
+						<p:ajax update="txtCPF" />
+					</p:selectOneRadio>
+
+					<h:outputLabel value="ID" />
+					<p:inputText disabled="true" readonly="true"
+						value="#{fornecedorBean.fornecedor.id}" />
+
+					<h:outputLabel value="CPF/CNPJ" />
+					<p:inputMask
+						mask="#{fornecedorBean.fornecedor.tp_pessoa == 1 ? '99.999.999/9999-99' : '999.999.999-99'}"
+						id="txtCPF" value="#{fornecedorBean.fornecedor.cpf_cnpj}"
+						size="25" />
+
+					<h:outputLabel value="Razão Social" />
+					<p:inputText id="txtNome" value="#{fornecedorBean.fornecedor.nome}"
+						size="70" required="true" maxlength="90" />
+
+					<h:outputLabel value="Fantasia" />
+					<p:inputText id="txtFantasia" maxlength="60"
+						value="#{fornecedorBean.fornecedor.nome_fantasia}" size="70" />
+
+					<h:outputLabel value="Cep" />
+					<h:panelGroup>
+						<p:inputMask id="txtCep" size="10" mask="99999-999"
+							value="#{fornecedorBean.fornecedor.cep}" />
+
+						<p:commandButton icon="ui-icon-search" id="btnBuscaCep"
+							ajax="false" update="pnlDados"
+							action="#{fornecedorBean.localizaCep(fornecedorBean.fornecedor.cep)}" />
+
+						<p:commandButton icon="ui-icon-help" id="btnBuscaMapa"
+							update=":modalDialogMapa" ajax="false"
+							action="#{fornecedorBean.carregaLocal()}" />
+					</h:panelGroup>
+
+					<h:outputLabel value="Endereço" />
+					<p:inputText id="txtEndereco"
+						value="#{fornecedorBean.fornecedor.rua}" size="70" maxlength="60" />
+
+					<h:outputLabel value="Número" />
+					<p:inputText id="txtNumero"
+						value="#{fornecedorBean.fornecedor.numero}" size="20"
+						maxlength="20" />
+
+					<h:outputLabel value="Complemento" />
+					<p:inputText id="txtCompl" maxlength="40"
+						value="#{fornecedorBean.fornecedor.complemento}" size="20" />
+
+					<h:outputLabel value="Bairro" />
+					<p:inputText id="txtBairro"
+						value="#{fornecedorBean.fornecedor.bairro}" size="50"
+						maxlength="60" />
+
+					<h:outputLabel value="Cidade" />
+					<h:selectOneMenu id="cidade"
+						value="#{fornecedorBean.fornecedor.cidades}">
+						<f:selectItems value="#{cidadesMB.cidadeSelected}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="UF" />
+					<p:inputText id="txtUF" value="#{fornecedorBean.fornecedor.uf}"
+						size="4" maxlength="2" />
+
+					<h:outputLabel value="Tel. Fixo (1)" />
+					<p:inputText id="txtTelefone"
+						value="#{fornecedorBean.fornecedor.telefone}" size="30"
+						onfocus="phoneMaskHandler(event);"
+						onblur="phoneMaskHandler(event);">
+						<f:validateRegex
+							pattern="^(\(?(\d{2})\)?\s?-?\s?(\d{4}|\d{5})\s?-?\s?(\d{4}))$" />
+					</p:inputText>
+
+					<h:outputLabel value="Tel. Fixo (2)" />
+					<p:inputText id="txtTelefone2"
+						value="#{fornecedorBean.fornecedor.telefone2}" size="30"
+						onfocus="phoneMaskHandler(event);"
+						onblur="phoneMaskHandler(event);">
+						<f:validateRegex
+							pattern="^(\(?(\d{2})\)?\s?-?\s?(\d{4}|\d{5})\s?-?\s?(\d{4}))$" />
+					</p:inputText>
+
+					<h:outputLabel value="Celular (1)" />
+					<p:inputText id="txtCelular"
+						value="#{fornecedorBean.fornecedor.celular}" size="30"
+						onfocus="phoneMaskHandler(event);"
+						onblur="phoneMaskHandler(event);">
+						<f:validateRegex
+							pattern="^(\(?(\d{2})\)?\s?-?\s?(\d{4}|\d{5})\s?-?\s?(\d{4}))$" />
+					</p:inputText>
+
+					<h:outputLabel value="Celular (2)" />
+					<p:inputText id="txtCelular2"
+						value="#{fornecedorBean.fornecedor.celular2}" size="30"
+						onfocus="phoneMaskHandler(event);"
+						onblur="phoneMaskHandler(event);">
+						<f:validateRegex
+							pattern="^(\(?(\d{2})\)?\s?-?\s?(\d{4}|\d{5})\s?-?\s?(\d{4}))$" />
+					</p:inputText>
+
+					<h:outputLabel value="Comercial" />
+					<p:inputText id="txtComercial"
+						value="#{fornecedorBean.fornecedor.comercial}" size="30"
+						onfocus="phoneMaskHandler(event);"
+						onblur="phoneMaskHandler(event);">
+						<f:validateRegex
+							pattern="^(\(?(\d{2})\)?\s?-?\s?(\d{4}|\d{5})\s?-?\s?(\d{4}))$" />
+					</p:inputText>
+
+					<h:outputLabel value="Nextel (1)" />
+					<p:inputText id="txtNextel"
+						value="#{fornecedorBean.fornecedor.nextel}" size="30" />
+
+					<h:outputLabel value="Nextel (2)" />
+					<p:inputText id="txtNextel2"
+						value="#{fornecedorBean.fornecedor.nextel2}" size="30" />
+
+					<h:outputLabel value="Pabx" />
+					<p:inputText id="txtPabx" value="#{fornecedorBean.fornecedor.pabx}"
+						size="30" onfocus="phoneMaskHandler(event);"
+						onblur="phoneMaskHandler(event);">
+						<f:validateRegex
+							pattern="^(\(?(\d{2})\)?\s?-?\s?(\d{4}|\d{5})\s?-?\s?(\d{4}))$" />
+					</p:inputText>
+
+					<h:outputLabel value="Site" />
+					<p:inputText id="txtSite" value="#{fornecedorBean.fornecedor.site}"
+						size="30" />
+
+					<h:outputLabel value=" " />
+
+					<h:outputText value="Restrição" />
+					<p:selectBooleanCheckbox id="txtRestricao" label="Restrição"
+						value="#{fornecedorBean.fornecedor.restricao}" />
+
+					<h:outputText value="Ativo" />
+					<p:selectBooleanCheckbox id="txtAtivo" label="Ativo"
+						value="#{fornecedorBean.fornecedor.status}" />
+
+					<f:facet name="footer">
+						<p:fieldset legend="Observações">
+							<p:inputTextarea id="txtObs"
+								value="#{fornecedorBean.fornecedor.obs}" rows="7" cols="60" />
+						</p:fieldset>
+						<h:panelGrid columns="2">
+							<p:commandButton action="#{fornecedorBean.salvar}"
+								update="frmFornecedor" value="Salvar"
+								icon="ui-icon-circle-check"></p:commandButton>
+							<p:commandButton action="main.jsf" ajax="false" value="Fechar"
+								immediate="true" icon="ui-icon-circle-close" />
+						</h:panelGrid>
+					</f:facet>
+				</h:panelGrid>
+			</p:panel>
+
+
+		</h:form>
+
+		<p:dialog id="modalDialogMapa" header="Localizar Mapa" widgetVar="dlg"
+			modal="true" height="420" width="620" appendTo="@(body)"
+			showEffect="side" hideEffect="explode">
+			<h:form prependId="false">
+				<p:outputPanel autoUpdate="true" id="outPanelMapa">
+					<p:gmap id="gMapaLocal" center="#{fornecedorBean.localizacao}"
+						model="#{fornecedorBean.locais}" zoom="15" type="HYBRID"
+						style="width:600px;height:400px" />
+				</p:outputPanel>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:decorate>
+</html>

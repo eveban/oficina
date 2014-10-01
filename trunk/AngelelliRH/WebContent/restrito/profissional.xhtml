@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view contentType="text/html" />
+<ui:decorate template="../templates/padrao.xhtml">
+	<ui:define name="centro">
+		<h:body>
+		Usuário logado #{request.remoteUser}
+	<br /> Nome do usuário logado: #{contextoBean.profissionalLogado.nome}
+	<br />
+			<h:form>
+				<p:growl id="msgs" showDetail="true" />
+				<p:accordionPanel style="text-align:left;">
+					<p:tab title="Informações Pessoais">
+						<h:outputText value="#{profissionalMB.profissional.nome}" />
+						<h:panelGrid columns="2" cellpadding="10">
+
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Escolaridade">
+						<h:panelGrid columns="2" cellpadding="10">
+
+							<h:outputText value="Francis Ford Coppola's legendary..." />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Cursos Complementares">
+						<h:panelGrid columns="2" cellpadding="10">
+
+							<h:outputText value="After a break of more than 15 years..." />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Empresas Anteriores">
+						<h:panelGrid columns="2" cellpadding="10">
+
+							<h:outputText value="After a break of more than 15 years..." />
+						</h:panelGrid>
+					</p:tab>
+				</p:accordionPanel>
+			</h:form>
+
+		</h:body>
+	</ui:define>
+</ui:decorate>
+</html>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<f:view contentType="text/html" />
+
+<sec:ifAnyGranted roles="ROLE_USUARIO">
+	<h:form id="menu">
+		<p:growl id="messages" />
+		<p:menubar>
+			<p:submenu label="Clientes" icon="ui-icon-document">
+				<p:menuitem value="Consutar" url="#" icon="ui-icon-search" />
+				<p:menuitem value="Cadastrar" url="/admin/cadastroEmpresa.jsf"
+					icon="ui-icon-search" />
+				<p:separator />
+				<p:menuitem value="Sair"
+					onclick="document.location='#{request.contextPath}/j_spring_security_logout'" />
+			</p:submenu>
+
+			<p:submenu label="Veículos" icon="ui-icon-pencil">
+				<p:menuitem value="Consultar" url="#"
+					icon="ui-icon-arrowreturnthick-1-w" />
+				<p:menuitem value="Cadastrar" url="#"
+					icon="ui-icon-arrowreturnthick-1-e" />
+			</p:submenu>
+			<p:submenu label="Fornecedor" icon="ui-icon-pencil">
+				<p:menuitem value="Consultar" url="#"
+					icon="ui-icon-arrowreturnthick-1-w" />
+				<p:menuitem value="Cadastrar" url="#"
+					icon="ui-icon-arrowreturnthick-1-e" />
+			</p:submenu>
+			<p:submenu label="Serviços" icon="ui-icon-pencil">
+				<p:menuitem value="Ordem de Serviço" url="#"
+					icon="ui-icon-arrowreturnthick-1-w" />
+				<p:menuitem value="Cadastrar" url="#"
+					icon="ui-icon-arrowreturnthick-1-e" />
+			</p:submenu>
+
+			<p:submenu label="Financeiro" icon="ui-icon-pencil">
+				<p:menuitem value="Porcentagem Massa" url="#"
+					icon="ui-icon-arrowreturnthick-1-w" />
+				<p:separator />
+				<p:menuitem value="Contas a pagar" url="#"
+					icon="ui-icon-arrowreturnthick-1-e" />
+
+				<p:menuitem value="Contas a receber" url="#"
+					icon="ui-icon-arrowreturnthick-1-e" />
+			</p:submenu>
+
+
+			<p:submenu label="Actions" icon="ui-icon-gear">
+				<p:submenu label="Ajax" icon="ui-icon-refresh">
+					<p:menuitem value="Save" actionListener="#{menuView.save}"
+						icon="ui-icon-disk" update="messages" />
+					<p:menuitem value="Update" actionListener="#{menuView.update}"
+						icon="ui-icon-arrowrefresh-1-w" update="messages" />
+				</p:submenu>
+				<p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+					<p:menuitem value="Delete" actionListener="#{menuView.delete}"
+						icon="ui-icon-close" update="messages" ajax="false" />
+				</p:submenu>
+			</p:submenu>
+			<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+				<p:submenu label="Administração" icon="ui-icon-gear">
+					<p:submenu label="Empresa" icon="ui-icon-refresh">
+						<p:menuitem value="Consultar" actionListener="#{menuView.save}"
+							icon="ui-icon-search" update="messages" />
+						<p:menuitem value="Cadastrar" url="/admin/cadastroEmpresa.jsf"
+							icon="ui-icon-disk" update="messages" />
+					</p:submenu>
+					<p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+						<p:menuitem value="Delete" actionListener="#{menuView.delete}"
+							icon="ui-icon-close" update="messages" ajax="false" />
+					</p:submenu>
+				</p:submenu>
+			</sec:ifAnyGranted>
+			<p:menuitem value="Sair"
+				onclick="document.location='#{request.contextPath}/j_spring_security_logout'"
+				icon="ui-icon-close" />
+			<f:facet name="options">
+
+			</f:facet>
+		</p:menubar>
+	</h:form>
+</sec:ifAnyGranted>
+</html>

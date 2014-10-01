@@ -1,0 +1,172 @@
+body {
+  background: #42464F;
+  font-family: HelveticaNeue-Regular, Helvetica;
+  font-size:1.2em;
+  width:690px;
+}
+.insp{
+  text-align:center;
+  color:#fff;
+}
+.insp a{
+  text-decoration:none;
+  color:#DFC317;
+}
+.card {
+  width:330px;
+  height:400px;
+  margin: 100px 180px;
+  border-radius:4px;
+  -webkit-box-shadow:  0px 3px 5px 3px #000000;
+  box-shadow:  0px 5px 5px 3px rgba(0, 0, 0, 0.15);
+  background: rgb(245,245,245); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,245,245,1)), color-stop(100%,rgba(235,235,235,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ebebeb',GradientType=0 ); /* IE6-9 */
+  position:relative;
+  color:#ADAEB0;
+  text-align:center;
+  line-height:480px;
+  text-shadow: 0px 1px 0 rgba(255, 255, 255, 0.8), inset 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.hang {
+  width:70px;
+  height:130px;
+  background:rgba(255, 255, 255, 0.4);
+  border-radius:3px;
+  box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  position:absolute;
+  top:-95px;
+  left:130px;
+  z-index:1;
+}
+.hang:after {
+  content:"";
+  width:60px;
+  height:90px;
+  background:rgba(255, 255, 255, 0.4);
+  position:absolute;
+  bottom:0;
+  left:5px;
+  border-radius:3px;
+  box-shadow:0 1px 2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.hang:before {
+  content:"";
+  width:70px;
+  height:8px;
+  background: #42464F;
+  position:absolute;
+  top:125px;
+  border-radius:4px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 2px 2px rgba(0, 0, 0, 0.6);
+  z-index:4;
+}
+.details {
+  width:14px;
+  height:14px;
+  box-shadow:0 5px 5px rgba(0, 0, 0, 0.4), inset 0 6px 3px rgba(255, 255, 255, 1);
+  border:1px solid rgba(0, 0, 0, 0.1);
+  background: #3D3E3E;
+  border-radius:100%;
+  position:absolute;
+  top:10px;
+  left:27px;
+}
+.details:after {
+  content:"";
+  width:14px;
+  height:14px;
+  background: #565759;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.9), inset 0 2px 6px 3px rgba(0, 0, 0, 0.9);
+  border-radius:100%;
+  position:absolute;
+  top:50px;
+  left:0px;
+}
+.avatar {
+  width:135px;
+  height:135px;
+  border-radius:100%;
+  position:absolute;
+  top:60px;
+  left:97px;
+  z-index:100;
+  background: url(http://news.bbc.co.uk/media/images/43035000/jpg/_43035127_shrek_face416.jpg);
+  background-position:center;
+  background-size:290px;
+  -webkit-box-shadow: inset 0px 3px 5px 3px #000000;
+  box-shadow: 0px 10px 20px 1px rgba(0, 0, 0, 0.30), inset 0px 3px 5px 3px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.pwd {
+  width:180px;
+  height:45px;
+  position:absolute;
+  top:280px;
+  left:55px;
+  border-radius:25px;
+  border:none;
+  background: rgb(230,230,230); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(230,230,230,1) 0%, rgba(254,254,254,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(230,230,230,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(230,230,230,1) 0%,rgba(254,254,254,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(230,230,230,1) 0%,rgba(254,254,254,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(230,230,230,1) 0%,rgba(254,254,254,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(230,230,230,1) 0%,rgba(254,254,254,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+  padding: 0 20px;
+  font-size:0.8em;
+  font-family: HelveticaNeue-Light, Helvetica;
+  color: #C4C4C4;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.pwd:before {
+    content: "\f178"; 
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5em;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    }
+input {outline:none;}
+.icons {
+  width:330px;
+  height:40px;
+  position:absolute;
+  top:350px;
+  font-size:0.8em;
+  font-family: HelveticaNeue-Light, Helvetica;
+  color: #C4C4C4;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.icons:before {
+    content: "\f17d"; 
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5em;
+    position: absolute;
+    top: -220px;
+    left: 125px;
+    }
+.icons:hover {
+  color:#C4BE45;
+}
+.icons:after {
+    content: "\f011"; 
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5em;
+    position: absolute;
+    top: -220px;
+    left: 185px;
+    }

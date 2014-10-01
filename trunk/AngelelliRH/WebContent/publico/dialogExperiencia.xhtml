@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<p:panel header="Experiências">
+		<p:commandButton icon="ui-icon-circle-plus" value="Novo" ajax="true"
+			immediate="false" onclick="PF('experienciaDlg').show();" />
+		<br></br>
+		<p:dataTable emptyMessage="Profissional sem experiência."
+			value="#{profissionalMB.profissional.experiencias}" var="experiencia"
+			paginator="true" rows="6" dynamic="true" id="experienciaTable">
+			<p:column headerText="Nome">
+				<h:outputText value="#{experiencia.nome}" />
+			</p:column>
+			<p:column headerText="Cargo">
+				<h:outputText value="#{experiencia.cargo}" />
+			</p:column>
+			<p:column headerText="Entrada">
+				<h:outputText value="#{experiencia.dataInicial.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Saída">
+				<h:outputText value="#{experiencia.dataFinal.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column style="width:60px;">
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+	<p:dialog header="Cadastrar Contato" widgetVar="experienciaDlg"
+		resizable="true" id="dialogExperiencia" width="650" showEffect="fade"
+		hideEffect="explode" height="350"
+		onCloseUpdate="experienciaTable">
+
+		<p:panel id="panel">
+			<f:facet name="header">
+				<h:outputLabel value="Experiência Profissional"
+					style="font-size:13px;" />
+			</f:facet>
+
+			<div id="font_um">
+				<h:panelGrid columns="4">
+					<h:column>
+						<h:outputLabel value="Empresa" />
+					</h:column>
+					<h:column>
+						<p:inputText value="#{profissionalMB.experiencia.nome}" />
+					</h:column>
+					<h:column>
+						<h:outputLabel value="Cargo" />
+					</h:column>
+					<h:column>
+						<p:inputText value="#{profissionalMB.experiencia.cargo}" />
+					</h:column>
+					<h:column>
+						<h:outputLabel value="Data Entrada" />
+					</h:column>
+					<h:column>
+						<p:calendar value="#{profissionalMB.experiencia.dataInicial.time}"
+							pattern="dd/MM/yyyy" />
+					</h:column>
+					<h:column>
+						<h:outputLabel value="Data saida" />
+					</h:column>
+					<h:column>
+						<p:calendar value="#{profissionalMB.experiencia.dataFinal.time}"
+							pattern="dd/MM/yyyy" />
+					</h:column>
+				</h:panelGrid>
+				<h:column>
+					<h:outputLabel value="Atividades" />
+				</h:column>
+				<h:column>
+					<p:inputTextarea style="width:300px;height:100px;"
+						value="#{profissionalMB.experiencia.atividades}" />
+				</h:column>
+				<p:commandButton onclick="experienciaDlg.hide();" immediate="false"
+					ajax="true" action="#{profissionalMB.adicionaExperiencia}"
+					icon="ui-icon ui-icon-check" value="Salvar"
+					update="experienciaTable panel">
+				</p:commandButton>
+			</div>
+		</p:panel>
+	</p:dialog>
+</h:body>
+
+</html>

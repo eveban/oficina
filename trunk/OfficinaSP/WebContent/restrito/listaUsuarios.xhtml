@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:decorate template="template.xhtml">
+	<ui:define name="centro">
+		<f:view encoding="UTF-8">
+			<h:form id="formCli">
+				<p:panel header="Lista dos Usuários">
+					<p:dataTable id="tbUsu" var="usu"
+						value="#{usuariosMB.listaUsuarios}" paginator="true" lazy="true"
+						rows="10" paginatorPosition="bottom" widgetVar="usuTable"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						rowsPerPageTemplate="5,10,15"
+						emptyMessage="Nenhum Usuário cadastrado!">
+						<f:facet name="header">
+							<p:outputPanel>
+								<h:outputText value="Pesquisar:  " style="text-align: right" />
+								<p:inputText id="globalFilter" onkeyup="usuTable.filter()"
+									update="usuTable" style="width:150px" />
+							</p:outputPanel>
+						</f:facet>
+
+						<p:column headerText="ID.">
+							<div align="left"
+								style="width: 100%; min-width: 100%; max-width: 100%;">
+								<h:outputText value="#{usu.id}" />
+							</div>
+						</p:column>
+
+						<p:column headerText="Login">
+							<div align="left"
+								style="width: 100%; min-width: 100%; max-width: 100%;">
+								<h:outputText value="#{usu.login}" />
+							</div>
+						</p:column>
+
+						<p:column headerText="Nome">
+							<div align="left"
+								style="width: 100%; min-width: 100%; max-width: 100%;">
+								<h:outputText value="#{usu.nome}" />
+							</div>
+						</p:column>
+
+						<p:column headerText="Email">
+							<div align="left"
+								style="width: 100%; min-width: 100%; max-width: 100%;">
+								<h:outputText value="#{usu.email}" />
+							</div>
+						</p:column>
+
+
+						<f:facet name="footer">
+							<p:commandButton action="main.jsf" ajax="false" value="Fechar"
+								icon="ui-icon-circle-close" />
+						</f:facet>
+					</p:dataTable>
+				</p:panel>
+			</h:form>
+		</f:view>
+
+	</ui:define>
+</ui:decorate>
+</html>

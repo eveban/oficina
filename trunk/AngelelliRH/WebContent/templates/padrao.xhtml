@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>.:: Frigorifico Angelelli ::. Sempre a melhor carne!</title>
+	<h:outputStylesheet library="css" name="tabelas.css" />
+	<h:outputScript target="body" name="enterKeyTab.js" library="js" />
+	<style type="text/css" />
+
+</h:head>
+
+<h:body>
+	<div align="center">
+		<p:layout style="min-width:1020px;max-width:1020px;min-height:600px">
+			<p:layoutUnit position="north" size="100">
+				<div align="left" style="margin-left: 50px;">
+					<h:graphicImage library="images" name="logo.png" height="80px" />
+				</div>
+			</p:layoutUnit>
+			<p:layoutUnit position="west" size="220">
+				<ui:insert name="menu">
+					<h:form>
+						<p:menu style="width: 200px">
+							<p:submenu label="Menu">
+								<p:menuitem value="Lançar Horas Extra" icon="ui-icon-contact" />
+								<p:menuitem value="Buscar vagas" icon="ui-icon-search" />
+								<p:menuitem value="Editar dados" icon="ui-icon-pencil" />
+								<p:menuitem value="Sair" icon="ui-icon-key"
+									onclick="document.location='#{request.contextPath}/j_spring_security_logout'" />
+							</p:submenu>
+						</p:menu>
+					</h:form>
+				</ui:insert>
+			</p:layoutUnit>
+			<p:layoutUnit position="center">
+				<ui:insert name="centro">
+                        O que estiver aqui será substituido!
+                    </ui:insert>
+			</p:layoutUnit>
+		</p:layout>
+	</div>
+</h:body>
+</html>

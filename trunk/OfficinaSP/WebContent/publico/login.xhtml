@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet"
+		href="#{facesContext.externalContext.requestContextPath}/resources/css/default.css" />
+	<script type="text/javascript" src="js/jquery.maskedinput-1.2.1.js"></script>
+	<script type="text/javascript">  
+$(document).ready(function(){  
+        $("#telefone").mask("(99) 9999-9999");  
+        $("#form\\:telefone").mask("(99) 9999-9999");   
+        $("#cep").mask("99999-999");  
+        $("#data").mask("99/99/9999");  
+        $(".cpf").mask("999.999.999-99");  
+        $("#cnpj").mask("99.999.999/9999-99");  
+        $('.ucpf').unmask();
+        
+});  
+</script>
+	<title>OficinaSP</title>
+
+	<style type="text/css">
+#divCentro {
+	width: 400px; /* Tamanho da Largura da Div */
+	height: 200px; /* Tamanho da Altura da Div */
+	position: absolute;
+	top: 45%;
+	margin-top: -100px;
+	/* ou seja ele pega 50% da altura tela e sobe metade do valor da altura no caso 100 */
+	left: 55%;
+	margin-left: -250px;
+	/* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 250 */
+	/* background-color: #F00; */
+}
+</style>
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" id="topPanel" size="53">
+			<h:graphicImage value="#{resource['images/logo.png']}"
+				style="margin:3px 0 11px 10px; width:120px; height:25px;" />
+		</p:layoutUnit>
+		<p:layoutUnit position="center" id="centroPanel">
+			<form method="post"
+				action="#{request.contextPath}/j_spring_security_check">
+				<p:focus />
+				<p:panel id="divCentro"
+					header="Sistema OfficinaSP - Controle de Acesso - Seja Bem-vindo">
+					<div align="center"
+						style="margin-top: 50px; width: auto; float: left;">
+						<h:graphicImage value="#{resource['images/login.png']}"
+							style="height:80px;width:100px" />
+					</div>
+					<div align="center"
+						style="margin-top: 50px; width: auto; float: left;">
+						<table>
+							<tr>
+								<td><h:outputLabel for="j_username" value="Login: " /></td>
+								<td><p:inputText id="j_username" required="true" /></td>
+							</tr>
+							<tr>
+								<td><h:outputLabel for="j_password" value="Senha: " /></td>
+								<td><p:password id="j_password" required="true" /></td>
+								<h:panelGroup rendered="#{!empty param.login_error}">
+									<h:outputText
+										value="Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}"
+										style="color: darkred" />
+
+								</h:panelGroup>
+							</tr>
+							<tr>
+								<td align="right"><input type="checkbox"
+									name="_spring_security_remember_me" /></td>
+								<td>Entrar automaticamente</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><h:commandButton value="Login" /></td>
+							</tr>
+						</table>
+					</div>
+				</p:panel>
+				<p:messages id="messagesLogin" showDetail="true" autoUpdate="true"
+					closable="true" />
+			</form>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>
